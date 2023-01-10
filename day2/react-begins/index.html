@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+	<div id="root"></div>
+</body>
+	<script src="https://unpkg.com/react@latest/umd/react.production.min.js"></script>
+	<script src="https://unpkg.com/react-dom@latest/umd/react-dom.production.min.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	<script type="text/babel">
+		const root = document.getElementById("root");
+		let counter = 0;
+		function countUp(){
+			return counter += 1;
+		}
+		function App(){
+			const [counter, modifier] = React.useState(0);
+			const onClick = () => countUp;
+			return (
+			<div>
+				<h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
+					Total clicks: {counter}
+				</h3>
+				<button onClick={onClick}
+						style={{
+						backgroundColor: "#b4e2e2",
+						border: 0,
+						radius: 10,
+					}}
+					// onClick={() => console.log("i'm clocked")}
+				>
+					Click me
+				</button>
+			</div>
+		);
+		}
+		ReactDOM.render(<App />, root);
+	</script>
+</html>
