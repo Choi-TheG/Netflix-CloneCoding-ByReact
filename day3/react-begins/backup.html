@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+	<div id="root"></div>
+</body>
+	<script src="https://unpkg.com/react@latest/umd/react.production.min.js"></script> <!-- interactive(상호작용 가능)한 UI를 만들 수 있게 함 -->
+	<script src="https://unpkg.com/react-dom@latest/umd/react-dom.production.min.js"></script> <!-- React element를 HTML에 두는 역할 -->
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> <!-- JSX로 변환시켜주는 것 -->
+	<script type="text/babel"> <!-- src 말고 type으로 쓸 것 -->
+		const root = document.getElementById("root");
+		// 직접 만든 컴포넌트는 앞에 대문자로 해줌
+		const Title = () => (
+			<h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
+				Hello I'm a title
+			</h3>
+		);
+		const Button = () => (
+			<button style={{
+				backgroundColor: "#efefef",
+			}}
+			onClick={() => console.log("i'm clocked")}
+			>
+				Click me
+			</button>
+		);
+		const Container = () => (
+			<Title />
+			<Button />
+		);
+
+		const h3 = React.createElement(
+			"h3",
+			// {id: "sexy-span", style: { color: "red"} },
+			{
+				id: "title",
+				onMouseEnter: () => console.log('mouse enter'),
+			},
+			"Hola I'm a h3"
+		);	// <span id="sexy-span" style="color:red;"></span>을 만들어줌. 어려워서 뒤에선 안쓸 것이지만 이해를 위한 핵심 내용임.
+		
+		const btn = React.createElement(
+			"button",
+			{
+				onClick: () => console.log("i'm clicked"),
+				style:{
+					backgroundColor: "#fff",
+				},
+			},
+			"Click me"
+		);
+		
+		const container = React.createElement("div", null, [<Container />, Button]);
+		
+		ReactDOM.render(container, root); 	// render = React element를 가지고 HTML로 만들어 배치한다는 것
+										// show it to the User. 사용자에게 보여준다. ReactDOM.render(a, b); a를 b에 넣는건가
+	/* ReactJS는 HTML Element를 Update할 수 있음. UI를 업데이트 및 수정할 수 있음. */ 
+	</script>
+</html>

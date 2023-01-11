@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+	<div id="root"></div>
+</body>
+	<script src="https://unpkg.com/react@latest/umd/react.production.min.js"></script>
+	<script src="https://unpkg.com/react-dom@latest/umd/react-dom.production.min.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	<script type="text/babel">
+		const root = document.getElementById("root");
+		let counter = 0;
+		function countUp(){
+			return counter += 1;
+		}
+		function App(){
+			// state = value = 값 = 데이터 = (현재) 상태
+			// const [value, function] : value를 업데이트 하기 위한 function. 그렇기에 function의 이름은 setValue 형식으로 함.
+			// React.useState(); : 비동기적 기능 수행. array를 제공. 첫 번째 element가 현재의 값(state)가 됨
+			// React의 가장 중점적인 부분 : 데이터가 바뀔 때 마다(state update / modified) 컴포넌트를 (실제 바뀌는 값만) 리렌더링하고 UI를 새로고침.
+			const [counter, setCounter] = React.useState(0);
+			const onClick = () => {
+				// setCounter(counter +1);
+				setCounter((current) => current +1); // 윗줄의 방식과 같지만 (current)로 현재의 state를 보장하기 때문에 이 방식이 더 안전함
+			}
+			return (
+				<div>
+					<h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
+						Total clicks: {counter}
+					</h3>
+					<button onClick={onClick}>
+						Click me
+					</button>
+				</div>
+			);
+		}
+		ReactDOM.render(<App />, root);
+	</script>
+</html>
