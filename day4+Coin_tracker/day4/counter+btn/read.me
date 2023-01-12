@@ -1,0 +1,10 @@
+1. useEffect
+  : use code when i want(when state change).
+  dependancy state empty ? only run once. : run when state change.
+
+2. clean up fucntion
+  : In case
+    useEffect(() => something(), [dependancy])
+    It works when dependancy is change.
+    dependancy가 변경되면 원래의 값을 가지고 return 함수(clean up function)이 실행 됨
+    메모리 누수를 막기 위해 메모리를 정리할 때 사용
